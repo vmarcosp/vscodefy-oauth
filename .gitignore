@@ -1,2 +1,5 @@
 node_modules/
 dist/
+*.bs.js
+.cache/
+.vscode/

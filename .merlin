@@ -12,6 +12,10 @@ S /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml
 B /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml
 S src
 B lib/bs/src
+S src/css
+B lib/bs/src/css
 S src/ui/Layout
 B lib/bs/src/ui/Layout
+S src/pages/Home
+B lib/bs/src/pages/Home
 ####BSB GENERATED: NO EDIT}

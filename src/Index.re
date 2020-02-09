@@ -12,7 +12,7 @@ Css.(
 
 module App = {
   [@react.component]
-  let make = () => <div> {React.string("teste")} </div>;
+  let make = () => <Home />
 };
 
 ReactDOMRe.renderToElementWithId(<App />, "root");
