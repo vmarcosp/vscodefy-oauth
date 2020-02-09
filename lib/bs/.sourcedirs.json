@@ -1,0 +1,1 @@
+{ "dirs" : [ "src" , "src/ui" , "src/ui/Layout" ] , "pkgs" : [ [ "bs-platform" , "/home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-platform" ] , [ "reason-react" , "/home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react" ] , [ "bs-css" , "/home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css" ] ] , "generated" : [] }

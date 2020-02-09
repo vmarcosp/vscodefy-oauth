@@ -1,0 +1,37 @@
+g_std_incl = /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-platform/lib/ocaml
+g_pkg_flg = -bs-package-name reason-react-examples -bs-ns ReasonReactExamples
+src_root_dir = /home/vmarcosp/Projects/vscodefy-oauth
+bsc = /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-platform/lib/bsc.exe
+bsdep = /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-platform/lib/bsb_helper.exe
+warnings = -w -30-40+6+7+27+32..39+44+45+101
+bsc_flags = -bs-super-errors -bs-no-version-header
+ppx_flags = 
+g_dpkg_incls = 
+g_ns = -bs-ns ReasonReactExamples
+bsb_dir_group = 0
+g_lib_incls = -I . -I src/ui/Layout -I src -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml
+rule build_ast_from_re
+  command = $bsc  $warnings -color always -bs-jsx 3 $bsc_flags -o $out -bs-syntax-only -bs-binary-ast $in
+  description = [34mBuilding[39m [2m${out}[22m
+build  src/Index.reast : build_ast_from_re $src_root_dir/src/Index.re
+rule build_deps
+  command = $bsdep -hash 5d27a764b95cc45bc7fb550fdd660c87 $g_ns -g $bsb_dir_group $in
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build  src/Index.d : build_deps src/Index.reast
+rule ml_cmj_cmi
+  command = $bsc -nostdlib $g_pkg_flg -color always -bs-suffix $g_lib_incls -I $g_std_incl $warnings $bsc_flags -o $out $in
+  dyndep = $in_e.d
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build  src/Index-ReasonReactExamples.cmj |  src/Index-ReasonReactExamples.cmi $src_root_dir/src/Index.bs.js : ml_cmj_cmi src/Index.reast ||  src/Index.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src
+build  src/ui/Layout/Layout.reast : build_ast_from_re $src_root_dir/src/ui/Layout/Layout.re
+build  src/ui/Layout/Layout.d : build_deps src/ui/Layout/Layout.reast
+build  src/ui/Layout/Layout-ReasonReactExamples.cmj |  src/ui/Layout/Layout-ReasonReactExamples.cmi $src_root_dir/src/ui/Layout/Layout.bs.js : ml_cmj_cmi src/ui/Layout/Layout.reast ||  src/ui/Layout/Layout.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/ui/Layout
+rule build_package
+  command = $bsc -w -49 -color always -no-alias-deps  $in
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build  ReasonReactExamples.cmi : build_package ReasonReactExamples.mlmap
