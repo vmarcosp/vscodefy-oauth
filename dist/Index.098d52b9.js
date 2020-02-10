@@ -53034,7 +53034,7 @@ if ("development" !== 'production') {
 
 var Colors = {
   black: "0A182E",
-  primary: "18E3CB",
+  primary: "14C2AD",
   secondary: "2E75DE"
 };
 var font = "'Poppins', sans-serif";
@@ -55666,7 +55666,7 @@ exports.PipeFirst = PipeFirst;
 exports.onUnhandledException = onUnhandledException;
 /*  Not a pure module */
 
-},{"bs-platform/lib/js/block.js":"node_modules/bs-platform/lib/js/block.js","bs-platform/lib/js/curry.js":"node_modules/bs-platform/lib/js/curry.js","bs-platform/lib/js/caml_option.js":"node_modules/bs-platform/lib/js/caml_option.js","bs-platform/lib/js/caml_builtin_exceptions.js":"node_modules/bs-platform/lib/js/caml_builtin_exceptions.js"}],"src/components/ProjectInformations/hooks/ProjectInformationsHook.bs.js":[function(require,module,exports) {
+},{"bs-platform/lib/js/block.js":"node_modules/bs-platform/lib/js/block.js","bs-platform/lib/js/curry.js":"node_modules/bs-platform/lib/js/curry.js","bs-platform/lib/js/caml_option.js":"node_modules/bs-platform/lib/js/caml_option.js","bs-platform/lib/js/caml_builtin_exceptions.js":"node_modules/bs-platform/lib/js/caml_builtin_exceptions.js"}],"src/components/ProjectInformations/hooks/ProjectInformationsHook/ProjectInformationsHook.bs.js":[function(require,module,exports) {
 'use strict';
 
 var Curry = require("bs-platform/lib/js/curry.js");
@@ -55793,9 +55793,11 @@ exports.divider = divider;
 
 var React = require("react");
 
+var ReactReveal = require("react-reveal");
+
 var Render$VscodefyOauth = require("../../../../lib/Render.bs.js");
 
-var ProjectInformationsHook$VscodefyOauth = require("../../hooks/ProjectInformationsHook.bs.js");
+var ProjectInformationsHook$VscodefyOauth = require("../../hooks/ProjectInformationsHook/ProjectInformationsHook.bs.js");
 
 var ProjectInformations_Styles$VscodefyOauth = require("./ProjectInformations_Styles.bs.js");
 
@@ -55803,23 +55805,27 @@ function ProjectInformations(Props) {
   var match = ProjectInformationsHook$VscodefyOauth.useProjectInformations(
   /* () */
   0);
-  return React.createElement("ul", {
-    className: ProjectInformations_Styles$VscodefyOauth.list
-  }, React.createElement("li", undefined, "5k Downloads"), React.createElement("span", {
-    className: ProjectInformations_Styles$VscodefyOauth.divider
-  }), React.createElement("li", undefined, Render$VscodefyOauth.$$int(match[
-  /* stars */
-  0]), " Stars"), React.createElement("span", {
-    className: ProjectInformations_Styles$VscodefyOauth.divider
-  }), React.createElement("li", undefined, Render$VscodefyOauth.$$int(match[
-  /* forks */
-  1]), " Forks"));
+  return React.createElement(ReactReveal.Fade, {
+    children: React.createElement("ul", {
+      className: ProjectInformations_Styles$VscodefyOauth.list
+    }, React.createElement("li", undefined, "5k Downloads"), React.createElement("span", {
+      className: ProjectInformations_Styles$VscodefyOauth.divider
+    }), React.createElement("li", undefined, Render$VscodefyOauth.$$int(match[
+    /* stars */
+    0]), " Stars"), React.createElement("span", {
+      className: ProjectInformations_Styles$VscodefyOauth.divider
+    }), React.createElement("li", undefined, Render$VscodefyOauth.$$int(match[
+    /* forks */
+    1]), " Forks")),
+    bottom: true,
+    delay: 800
+  });
 }
 
 var make = ProjectInformations;
 exports.make = make;
 /* react Not a pure module */
-},{"react":"node_modules/react/index.js","../../../../lib/Render.bs.js":"src/lib/Render.bs.js","../../hooks/ProjectInformationsHook.bs.js":"src/components/ProjectInformations/hooks/ProjectInformationsHook.bs.js","./ProjectInformations_Styles.bs.js":"src/components/ProjectInformations/components/ProjectInformations/ProjectInformations_Styles.bs.js"}],"src/pages/Home/Home.bs.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-reveal":"node_modules/react-reveal/index.js","../../../../lib/Render.bs.js":"src/lib/Render.bs.js","../../hooks/ProjectInformationsHook/ProjectInformationsHook.bs.js":"src/components/ProjectInformations/hooks/ProjectInformationsHook/ProjectInformationsHook.bs.js","./ProjectInformations_Styles.bs.js":"src/components/ProjectInformations/components/ProjectInformations/ProjectInformations_Styles.bs.js"}],"src/pages/Home/Home.bs.js":[function(require,module,exports) {
 'use strict';
 
 var React = require("react");
@@ -55938,7 +55944,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34359" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36039" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

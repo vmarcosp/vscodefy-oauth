@@ -28,8 +28,8 @@ S src/components/Header/components
 B lib/bs/src/components/Header/components
 S src/components/ProjectInformations/components/ProjectInformations
 B lib/bs/src/components/ProjectInformations/components/ProjectInformations
-S src/components/ProjectInformations/hooks
-B lib/bs/src/components/ProjectInformations/hooks
+S src/components/ProjectInformations/hooks/ProjectInformationsHook
+B lib/bs/src/components/ProjectInformations/hooks/ProjectInformationsHook
 S src/components/Banner/components/Banner
 B lib/bs/src/components/Banner/components/Banner
 S src/components/Menu/components/Menu
