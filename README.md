@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/vmarcosp/vscodefy-oauth/blob/refactor/migrate-to-reasonml/src/components/Logo/components/Logo/logo.svg" />
+    <img src="https://github.com/vmarcosp/vscodefy-oauth/blob/refactor/migrate-to-reasonml/assets/logo.svg" />
 </p>
 
 <h1 align="center">
