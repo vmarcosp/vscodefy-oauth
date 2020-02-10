@@ -56,5 +56,7 @@ let content = style([
   top(0->px),
   left(0->px),
   padding(70->px),
-  boxSizing(`borderBox)
+  boxSizing(`borderBox),
+  display(`flex),
+  flexDirection(`column)
 ])

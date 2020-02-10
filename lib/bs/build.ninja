@@ -9,13 +9,13 @@ ppx_flags =
 g_dpkg_incls = 
 g_ns = -bs-ns ReasonReactExamples
 bsb_dir_group = 0
-g_lib_incls = -I . -I src/pages/Home -I src/lib -I src/components/Layout/components/Layout -I src/components/Menu/components/Menu -I src/components/Header/components -I src/components/Logo/components/Logo -I src/css -I src -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-axios/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-webapi/lib/ocaml
+g_lib_incls = -I . -I src/pages/Home -I src/lib -I src/components/Layout/components/Layout -I src/components/Menu/components/Menu -I src/components/Banner/components/Banner -I src/components/Header/components -I src/components/Logo/components/Logo -I src/css -I src -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-axios/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-webapi/lib/ocaml
 rule build_ast_from_re
   command = $bsc  $warnings -color always -bs-jsx 3 $bsc_flags -o $out -bs-syntax-only -bs-binary-ast $in
   description = [34mBuilding[39m [2m${out}[22m
 build  src/App.reast : build_ast_from_re $src_root_dir/src/App.re
 rule build_deps
-  command = $bsdep -hash e305d4a1dec6ce47781fc473f3d259d9 $g_ns -g $bsb_dir_group $in
+  command = $bsdep -hash 14515a550f86609eac243c4c6b28a9a9 $g_ns -g $bsb_dir_group $in
   restat = 1
   description = [34mBuilding[39m [2m${out}[22m
 build  src/App.d : build_deps src/App.reast
@@ -58,6 +58,14 @@ build  src/components/Header/components/Header_Styles.reast : build_ast_from_re 
 build  src/components/Header/components/Header_Styles.d : build_deps src/components/Header/components/Header_Styles.reast
 build  src/components/Header/components/Header_Styles-ReasonReactExamples.cmj |  src/components/Header/components/Header_Styles-ReasonReactExamples.cmi $src_root_dir/src/components/Header/components/Header_Styles.bs.js : ml_cmj_cmi src/components/Header/components/Header_Styles.reast ||  src/components/Header/components/Header_Styles.d
   g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/components/Header/components
+build  src/components/Banner/components/Banner/Banner.reast : build_ast_from_re $src_root_dir/src/components/Banner/components/Banner/Banner.re
+build  src/components/Banner/components/Banner/Banner.d : build_deps src/components/Banner/components/Banner/Banner.reast
+build  src/components/Banner/components/Banner/Banner-ReasonReactExamples.cmj |  src/components/Banner/components/Banner/Banner-ReasonReactExamples.cmi $src_root_dir/src/components/Banner/components/Banner/Banner.bs.js : ml_cmj_cmi src/components/Banner/components/Banner/Banner.reast ||  src/components/Banner/components/Banner/Banner.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/components/Banner/components/Banner
+build  src/components/Banner/components/Banner/Banner_Styles.reast : build_ast_from_re $src_root_dir/src/components/Banner/components/Banner/Banner_Styles.re
+build  src/components/Banner/components/Banner/Banner_Styles.d : build_deps src/components/Banner/components/Banner/Banner_Styles.reast
+build  src/components/Banner/components/Banner/Banner_Styles-ReasonReactExamples.cmj |  src/components/Banner/components/Banner/Banner_Styles-ReasonReactExamples.cmi $src_root_dir/src/components/Banner/components/Banner/Banner_Styles.bs.js : ml_cmj_cmi src/components/Banner/components/Banner/Banner_Styles.reast ||  src/components/Banner/components/Banner/Banner_Styles.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/components/Banner/components/Banner
 build  src/components/Menu/components/Menu/Menu.reast : build_ast_from_re $src_root_dir/src/components/Menu/components/Menu/Menu.re
 build  src/components/Menu/components/Menu/Menu.d : build_deps src/components/Menu/components/Menu/Menu.reast
 build  src/components/Menu/components/Menu/Menu-ReasonReactExamples.cmj |  src/components/Menu/components/Menu/Menu-ReasonReactExamples.cmi $src_root_dir/src/components/Menu/components/Menu/Menu.bs.js : ml_cmj_cmi src/components/Menu/components/Menu/Menu.reast ||  src/components/Menu/components/Menu/Menu.d
