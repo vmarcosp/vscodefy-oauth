@@ -2,6 +2,6 @@
 [@react.component]
 let make = () => {
   <Layout>
-    {React.string("Home")}
+    {React.string("HomeHome")}
   </Layout>
 }

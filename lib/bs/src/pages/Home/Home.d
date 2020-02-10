@@ -1,1 +1,1 @@
-src/pages/Home/Home-ReasonReactExamples.cmj : ReasonReactExamples.cmi src/ui/Layout/Layout-ReasonReactExamples.cmj src/ui/Layout/Layout-ReasonReactExamples.cmi
+src/pages/Home/Home-ReasonReactExamples.cmj : ReasonReactExamples.cmi src/components/Layout/components/Layout/Layout-ReasonReactExamples.cmj src/components/Layout/components/Layout/Layout-ReasonReactExamples.cmi

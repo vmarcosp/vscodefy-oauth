@@ -11,7 +11,7 @@ Css.(
 [@react.component]
 let make = () => {
   let url = ReasonReactRouter.useUrl();
-
+  Js.log(url)
   switch (url.path) {
   | ["home"] => <Home />
   | ["login"] => <div />
