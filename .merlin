@@ -10,6 +10,10 @@ S /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react/lib/ocaml
 B /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react/lib/ocaml
 S /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml
 B /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml
+S /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-axios/lib/ocaml
+B /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-axios/lib/ocaml
+S /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-webapi/lib/ocaml
+B /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-webapi/lib/ocaml
 S src
 B lib/bs/src
 S src/css
@@ -18,6 +22,8 @@ S src/components/Logo/components/Logo
 B lib/bs/src/components/Logo/components/Logo
 S src/components/Header/components
 B lib/bs/src/components/Header/components
+S src/components/Menu/components/Menu
+B lib/bs/src/components/Menu/components/Menu
 S src/components/Layout/components/Layout
 B lib/bs/src/components/Layout/components/Layout
 S src/lib

@@ -5,4 +5,4 @@ module Colors = {
   let secondary = "2E75DE"
 }
 
-let fontFamily = "'Poppins', sans-serif"
+let font = "'Poppins', sans-serif"

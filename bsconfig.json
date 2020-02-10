@@ -1,7 +1,7 @@
 {
   "name": "reason-react-examples",
   "reason": {
-    "react-jsx": 3,
+    "react-jsx": 3
   },
   "sources": {
     "dir": "src",
@@ -21,7 +21,9 @@
   "namespace": true,
   "bs-dependencies": [
     "reason-react",
-    "bs-css"
+    "bs-css",
+    "bs-axios",
+    "bs-webapi"
   ],
   "refmt": 3
 }

@@ -26,5 +26,7 @@ let content = style([
   zIndex(100),
   position(`fixed),
   top(0->px),
-  left(0->px)
+  left(0->px),
+  padding(70->px),
+  boxSizing(`borderBox)
 ])
