@@ -1,5 +1,5 @@
 {
-  "name": "reason-react-examples",
+  "name": "vscodefy-oauth",
   "reason": {
     "react-jsx": 3
   },
@@ -21,6 +21,7 @@
   "namespace": true,
   "bs-dependencies": [
     "reason-react",
+    "reason-promise",
     "bs-css",
     "bs-axios",
     "bs-webapi"

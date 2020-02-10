@@ -13,7 +13,7 @@ let container = style([
     padding2(~v=0->px, ~h=32->px),
     height(`auto),
     margin(0->px),
-    fontSize(18->px),
+    fontSize(22->px),
     color(white),
     fontWeight(`num(500)),
     fontFamily(Theme.font),

@@ -1,6 +1,6 @@
 ####{BSB GENERATED: NO EDIT
 B lib/bs
-FLG -open ReasonReactExamples
+FLG -open VscodefyOauth
 FLG -ppx '/home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-platform/lib/bsppx.exe -bs-jsx 3'
 S /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-platform/lib/ocaml
 B /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-platform/lib/ocaml
@@ -8,6 +8,8 @@ FLG -nostdlib
 FLG -w -30-40+6+7+27+32..39+44+45+101
 S /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react/lib/ocaml
 B /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react/lib/ocaml
+S /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-promise/lib/ocaml
+B /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-promise/lib/ocaml
 S /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml
 B /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml
 S /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-axios/lib/ocaml
@@ -24,6 +26,10 @@ S src/components/Logo/components/Logo
 B lib/bs/src/components/Logo/components/Logo
 S src/components/Header/components
 B lib/bs/src/components/Header/components
+S src/components/ProjectInformations/components/ProjectInformations
+B lib/bs/src/components/ProjectInformations/components/ProjectInformations
+S src/components/ProjectInformations/hooks
+B lib/bs/src/components/ProjectInformations/hooks
 S src/components/Banner/components/Banner
 B lib/bs/src/components/Banner/components/Banner
 S src/components/Menu/components/Menu
