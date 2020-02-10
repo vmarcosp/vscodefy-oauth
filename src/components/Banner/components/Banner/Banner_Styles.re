@@ -14,11 +14,15 @@ let container = style([
     fontSize(64->px),
     fontWeight(`bold),
     margin(0->px),
-    marginBottom(24->px)
+    marginBottom(6->px)
   ]),
   selector("p", [
     fontSize(38->px),
     fontWeight(`num(300)),
     margin(0->px)
   ])
+])
+
+let buttonContainer = style([
+  marginTop(42->px)
 ])

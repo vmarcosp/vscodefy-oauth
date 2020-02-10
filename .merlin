@@ -26,6 +26,8 @@ S src/components/Banner/components/Banner
 B lib/bs/src/components/Banner/components/Banner
 S src/components/Menu/components/Menu
 B lib/bs/src/components/Menu/components/Menu
+S src/components/Button/components/Button
+B lib/bs/src/components/Button/components/Button
 S src/components/Layout/components/Layout
 B lib/bs/src/components/Layout/components/Layout
 S src/lib
