@@ -11,13 +11,41 @@ let container = style([
 let topIcon = style([
     position(`fixed), 
     top(0->px), 
-    right(0->px)
+    right(0->px),
+    height(`auto),
+    MediaQuery.xs([
+      display(none)
+    ]),
+    MediaQuery.sm([
+      width(270->px),
+    ]),
+    MediaQuery.md([
+      width(470->px),
+    ]),
+    MediaQuery.lg([
+      width(670->px),
+    ]),
+    MediaQuery.xl([
+      width(870->px),
+    ])
 ]);
 
 let bottomIcon = style([
     position(`fixed), 
     bottom(0->px), 
-    left(0->px)
+    left(0->px),
+     MediaQuery.xs([
+      display(none)
+    ]),
+    MediaQuery.md([
+      width(200->px),
+    ]),
+    MediaQuery.lg([
+      width(400->px),
+    ]),
+    MediaQuery.xl([
+      width(570->px),
+    ])
 ]);
 
 let content = style([
