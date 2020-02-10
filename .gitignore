@@ -2,3 +2,4 @@ node_modules/
 *.bs.js
 .cache/
 .vscode/
+lib/

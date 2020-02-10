@@ -53098,12 +53098,73 @@ function Button(Props) {
 var make = Button;
 exports.make = make;
 /* react Not a pure module */
-},{"react":"node_modules/react/index.js","./Button_Styles.bs.js":"src/components/Button/components/Button/Button_Styles.bs.js"}],"src/components/Banner/components/Banner/Banner_Styles.bs.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Button_Styles.bs.js":"src/components/Button/components/Button/Button_Styles.bs.js"}],"src/css/MediaQuery.bs.js":[function(require,module,exports) {
+'use strict';
+
+var Css = require("bs-css/src/Css.js");
+
+function toPx(value) {
+  return value.toString() + "px";
+}
+
+function toMedia(rule, value) {
+  return "(" + (rule + (":" + (value + ")")));
+}
+
+function createMedia(mediaType, value) {
+  var rule = mediaType ? "min-width" : "max-width";
+  var partial_arg = toMedia(rule, value.toString() + "px");
+  return function (param) {
+    return Css.media(partial_arg, param);
+  };
+}
+
+function maxWidth(param) {
+  return createMedia(
+  /* MAX */
+  0, param);
+}
+
+function minWidth(param) {
+  return createMedia(
+  /* MIN */
+  1, param);
+}
+
+var xs = createMedia(
+/* MAX */
+0, 576.0);
+var sm = createMedia(
+/* MIN */
+1, 576.0);
+var md = createMedia(
+/* MIN */
+1, 768.0);
+var lg = createMedia(
+/* MIN */
+1, 992.0);
+var xl = createMedia(
+/* MIN */
+1, 1200.0);
+exports.toPx = toPx;
+exports.toMedia = toMedia;
+exports.createMedia = createMedia;
+exports.maxWidth = maxWidth;
+exports.minWidth = minWidth;
+exports.xs = xs;
+exports.sm = sm;
+exports.md = md;
+exports.lg = lg;
+exports.xl = xl;
+/* xs Not a pure module */
+},{"bs-css/src/Css.js":"node_modules/bs-css/src/Css.js"}],"src/components/Banner/components/Banner/Banner_Styles.bs.js":[function(require,module,exports) {
 'use strict';
 
 var Css = require("bs-css/src/Css.js");
 
 var Theme$ReasonReactExamples = require("../../../../css/Theme.bs.js");
+
+var MediaQuery$ReasonReactExamples = require("../../../../css/MediaQuery.bs.js");
 
 var container = Css.style(
 /* :: */
@@ -53132,10 +53193,9 @@ var container = Css.style(
 [Css.fontFamily(Theme$ReasonReactExamples.font),
 /* [] */
 0]]),
-/* :: */
-[Css.selector("h1",
-/* :: */
-[Css.fontSize(Css.px(64)),
+/* [] */
+0]]]]]]);
+var title = Css.style(
 /* :: */
 [Css.fontWeight(
 /* bold */
@@ -53144,31 +53204,64 @@ var container = Css.style(
 [Css.margin(Css.px(0)),
 /* :: */
 [Css.marginBottom(Css.px(6)),
+/* :: */
+[MediaQuery$ReasonReactExamples.md(
+/* :: */
+[Css.fontSize(Css.px(48)),
 /* [] */
-0]]]]),
+0]),
 /* :: */
-[Css.selector("p",
+[MediaQuery$ReasonReactExamples.lg(
 /* :: */
-[Css.fontSize(Css.px(38)),
+[Css.fontSize(Css.px(52)),
+/* [] */
+0]),
+/* :: */
+[MediaQuery$ReasonReactExamples.xl(
+/* :: */
+[Css.fontSize(Css.px(64)),
+/* [] */
+0]),
+/* [] */
+0]]]]]]);
+var subtitle = Css.style(
 /* :: */
 [Css.fontWeight(
 /* `num */
 [5496390, 300]),
 /* :: */
 [Css.margin(Css.px(0)),
+/* :: */
+[MediaQuery$ReasonReactExamples.md(
+/* :: */
+[Css.fontSize(Css.px(22)),
 /* [] */
-0]]]),
+0]),
+/* :: */
+[MediaQuery$ReasonReactExamples.lg(
+/* :: */
+[Css.fontSize(Css.px(26)),
 /* [] */
-0]]]]]]]]);
+0]),
+/* :: */
+[MediaQuery$ReasonReactExamples.xl(
+/* :: */
+[Css.fontSize(Css.px(38)),
+/* [] */
+0]),
+/* [] */
+0]]]]]);
 var buttonContainer = Css.style(
 /* :: */
 [Css.marginTop(Css.px(42)),
 /* [] */
 0]);
 exports.container = container;
+exports.title = title;
+exports.subtitle = subtitle;
 exports.buttonContainer = buttonContainer;
 /* container Not a pure module */
-},{"bs-css/src/Css.js":"node_modules/bs-css/src/Css.js","../../../../css/Theme.bs.js":"src/css/Theme.bs.js"}],"src/components/Banner/components/Banner/Banner.bs.js":[function(require,module,exports) {
+},{"bs-css/src/Css.js":"node_modules/bs-css/src/Css.js","../../../../css/Theme.bs.js":"src/css/Theme.bs.js","../../../../css/MediaQuery.bs.js":"src/css/MediaQuery.bs.js"}],"src/components/Banner/components/Banner/Banner.bs.js":[function(require,module,exports) {
 'use strict';
 
 var React = require("react");
@@ -53179,18 +53272,22 @@ var Button$ReasonReactExamples = require("../../../Button/components/Button/Butt
 
 var Banner_Styles$ReasonReactExamples = require("./Banner_Styles.bs.js");
 
-var title = "Use Spotify inside vscode";
-var subtitle = "Provides integration with Spotify Web API and remote-control resources";
+var titleContent = "Use Spotify inside vscode";
+var subtitleContent = "Provides integration with Spotify Web API and remote-control resources";
 
 function Banner(Props) {
   return React.createElement("div", {
     className: Banner_Styles$ReasonReactExamples.container
   }, React.createElement(ReactReveal.Fade, {
-    children: React.createElement("h1", undefined, title),
+    children: React.createElement("h1", {
+      className: Banner_Styles$ReasonReactExamples.title
+    }, titleContent),
     bottom: true,
     delay: 600
   }), React.createElement(ReactReveal.Fade, {
-    children: React.createElement("p", undefined, subtitle),
+    children: React.createElement("p", {
+      className: Banner_Styles$ReasonReactExamples.subtitle
+    }, subtitleContent),
     bottom: true,
     delay: 900
   }), React.createElement(ReactReveal.Fade, {
@@ -53205,8 +53302,8 @@ function Banner(Props) {
 }
 
 var make = Banner;
-exports.title = title;
-exports.subtitle = subtitle;
+exports.titleContent = titleContent;
+exports.subtitleContent = subtitleContent;
 exports.make = make;
 /* react Not a pure module */
 },{"react":"node_modules/react/index.js","react-reveal":"node_modules/react-reveal/index.js","../../../Button/components/Button/Button.bs.js":"src/components/Button/components/Button/Button.bs.js","./Banner_Styles.bs.js":"src/components/Banner/components/Banner/Banner_Styles.bs.js"}],"src/components/Logo/components/Logo/Logo_Styles.bs.js":[function(require,module,exports) {
@@ -53395,66 +53492,7 @@ function Header(Props) {
 var make = Header;
 exports.make = make;
 /* react Not a pure module */
-},{"react":"node_modules/react/index.js","react-reveal":"node_modules/react-reveal/index.js","../../Logo/components/Logo/Logo.bs.js":"src/components/Logo/components/Logo/Logo.bs.js","../../Menu/components/Menu/Menu.bs.js":"src/components/Menu/components/Menu/Menu.bs.js","./Header_Styles.bs.js":"src/components/Header/components/Header_Styles.bs.js"}],"src/css/MediaQuery.bs.js":[function(require,module,exports) {
-'use strict';
-
-var Css = require("bs-css/src/Css.js");
-
-function toPx(value) {
-  return value.toString() + "px";
-}
-
-function toMedia(rule, value) {
-  return "(" + (rule + (":" + (value + ")")));
-}
-
-function createMedia(mediaType, value) {
-  var rule = mediaType ? "min-width" : "max-width";
-  var partial_arg = toMedia(rule, value.toString() + "px");
-  return function (param) {
-    return Css.media(partial_arg, param);
-  };
-}
-
-function maxWidth(param) {
-  return createMedia(
-  /* MAX */
-  0, param);
-}
-
-function minWidth(param) {
-  return createMedia(
-  /* MIN */
-  1, param);
-}
-
-var xs = createMedia(
-/* MAX */
-0, 576.0);
-var sm = createMedia(
-/* MIN */
-1, 576.0);
-var md = createMedia(
-/* MIN */
-1, 768.0);
-var lg = createMedia(
-/* MIN */
-1, 992.0);
-var xl = createMedia(
-/* MIN */
-1, 1200.0);
-exports.toPx = toPx;
-exports.toMedia = toMedia;
-exports.createMedia = createMedia;
-exports.maxWidth = maxWidth;
-exports.minWidth = minWidth;
-exports.xs = xs;
-exports.sm = sm;
-exports.md = md;
-exports.lg = lg;
-exports.xl = xl;
-/* xs Not a pure module */
-},{"bs-css/src/Css.js":"node_modules/bs-css/src/Css.js"}],"src/components/Layout/components/Layout/Layout_Styles.bs.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-reveal":"node_modules/react-reveal/index.js","../../Logo/components/Logo/Logo.bs.js":"src/components/Logo/components/Logo/Logo.bs.js","../../Menu/components/Menu/Menu.bs.js":"src/components/Menu/components/Menu/Menu.bs.js","./Header_Styles.bs.js":"src/components/Header/components/Header_Styles.bs.js"}],"src/components/Layout/components/Layout/Layout_Styles.bs.js":[function(require,module,exports) {
 'use strict';
 
 var Css = require("bs-css/src/Css.js");
@@ -53754,7 +53792,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41921" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45063" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
