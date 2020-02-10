@@ -1,8 +1,13 @@
+open ReactReveal
+
 [@react.component]
 let make = () => 
   Header_Styles.(
     <div className=container>
-      <Logo />
+      <Fade left=true>
+        <Logo />
+      </Fade>
+      
       <Menu />
     </div>
   )

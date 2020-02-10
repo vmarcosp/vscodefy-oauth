@@ -18,6 +18,8 @@ S src
 B lib/bs/src
 S src/css
 B lib/bs/src/css
+S src/bindings
+B lib/bs/src/bindings
 S src/components/Logo/components/Logo
 B lib/bs/src/components/Logo/components/Logo
 S src/components/Header/components

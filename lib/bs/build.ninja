@@ -9,13 +9,13 @@ ppx_flags =
 g_dpkg_incls = 
 g_ns = -bs-ns ReasonReactExamples
 bsb_dir_group = 0
-g_lib_incls = -I . -I src/pages/Home -I src/lib -I src/components/Layout/components/Layout -I src/components/Button/components/Button -I src/components/Menu/components/Menu -I src/components/Banner/components/Banner -I src/components/Header/components -I src/components/Logo/components/Logo -I src/css -I src -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-axios/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-webapi/lib/ocaml
+g_lib_incls = -I . -I src/pages/Home -I src/lib -I src/components/Layout/components/Layout -I src/components/Button/components/Button -I src/components/Menu/components/Menu -I src/components/Banner/components/Banner -I src/components/Header/components -I src/components/Logo/components/Logo -I src/bindings -I src/css -I src -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-axios/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-webapi/lib/ocaml
 rule build_ast_from_re
   command = $bsc  $warnings -color always -bs-jsx 3 $bsc_flags -o $out -bs-syntax-only -bs-binary-ast $in
   description = [34mBuilding[39m [2m${out}[22m
 build  src/App.reast : build_ast_from_re $src_root_dir/src/App.re
 rule build_deps
-  command = $bsdep -hash 473586d6b0481cc48ca6864e7749a585 $g_ns -g $bsb_dir_group $in
+  command = $bsdep -hash db01362748f2709d641fa18b2cb29352 $g_ns -g $bsb_dir_group $in
   restat = 1
   description = [34mBuilding[39m [2m${out}[22m
 build  src/App.d : build_deps src/App.reast
@@ -42,6 +42,10 @@ build  src/css/MediaQuery.reast : build_ast_from_re $src_root_dir/src/css/MediaQ
 build  src/css/MediaQuery.d : build_deps src/css/MediaQuery.reast
 build  src/css/MediaQuery-ReasonReactExamples.cmj |  src/css/MediaQuery-ReasonReactExamples.cmi $src_root_dir/src/css/MediaQuery.bs.js : ml_cmj_cmi src/css/MediaQuery.reast ||  src/css/MediaQuery.d
   g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/css
+build  src/bindings/ReactReveal.reast : build_ast_from_re $src_root_dir/src/bindings/ReactReveal.re
+build  src/bindings/ReactReveal.d : build_deps src/bindings/ReactReveal.reast
+build  src/bindings/ReactReveal-ReasonReactExamples.cmj |  src/bindings/ReactReveal-ReasonReactExamples.cmi $src_root_dir/src/bindings/ReactReveal.bs.js : ml_cmj_cmi src/bindings/ReactReveal.reast ||  src/bindings/ReactReveal.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/bindings
 build  src/components/Logo/components/Logo/Logo.reast : build_ast_from_re $src_root_dir/src/components/Logo/components/Logo/Logo.re
 build  src/components/Logo/components/Logo/Logo.d : build_deps src/components/Logo/components/Logo/Logo.reast
 build  src/components/Logo/components/Logo/Logo-ReasonReactExamples.cmj |  src/components/Logo/components/Logo/Logo-ReasonReactExamples.cmi $src_root_dir/src/components/Logo/components/Logo/Logo.bs.js : ml_cmj_cmi src/components/Logo/components/Logo/Logo.reast ||  src/components/Logo/components/Logo/Logo.d
