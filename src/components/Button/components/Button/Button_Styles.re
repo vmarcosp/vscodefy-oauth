@@ -9,5 +9,6 @@ let button = style([
   fontSize(16->px),
   fontWeight(`num(600)),
   padding2(~v=0->px, ~h=32->px),
-  boxSizing(`borderBox)
+  boxSizing(`borderBox),
+  cursor(`pointer)
 ])

@@ -4,10 +4,10 @@ open ReactReveal
 let make = () => 
   Header_Styles.(
     <div className=container>
-      <Fade left=true>
+      <Fade delay=600 left=true>
         <Logo />
       </Fade>
-      
+
       <Menu />
     </div>
   )

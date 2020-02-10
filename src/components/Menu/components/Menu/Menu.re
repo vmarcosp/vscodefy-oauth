@@ -5,7 +5,7 @@ let githubIconUrl = Utils.import("./github-icon.svg");
 [@react.component]
 let make = () =>
   Menu_Styles.(
-    <Fade right=true cascade=true>
+    <Fade delay=600 right=true cascade=true>
       <ul className=container>
         <li> "home"->React.string </li>
         <li> "login"->React.string </li>
