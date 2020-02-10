@@ -1,8 +1,7 @@
 open Css;
 open Theme;
 
-let container =
-  style([
+let container = style([
     width(100.0->vw),
     height(100.0->vh),
     boxSizing(`borderBox),
@@ -22,12 +21,10 @@ let bottomIcon = style([
 ]);
 
 let content = style([
+  width(100.0->pct),
+  height(100.0->pct),
+  zIndex(100),
   position(`fixed),
-  width(100.0->vw),
-  height(100.0->vh),
-  boxSizing(`borderBox),
-  overflow(`auto),
-  MediaQuery.sm([
-    padding(70->px),
-  ]),
+  top(0->px),
+  left(0->px)
 ])

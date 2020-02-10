@@ -9,13 +9,13 @@ ppx_flags =
 g_dpkg_incls = 
 g_ns = -bs-ns ReasonReactExamples
 bsb_dir_group = 0
-g_lib_incls = -I . -I src/pages/Home -I src/lib -I src/components/Layout/components/Layout -I src/components/Header/components -I src/css -I src -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml
+g_lib_incls = -I . -I src/pages/Home -I src/lib -I src/components/Layout/components/Layout -I src/components/Header/components -I src/components/Logo/components/Logo -I src/css -I src -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/reason-react/lib/ocaml -I /home/vmarcosp/Projects/vscodefy-oauth/node_modules/bs-css/lib/ocaml
 rule build_ast_from_re
   command = $bsc  $warnings -color always -bs-jsx 3 $bsc_flags -o $out -bs-syntax-only -bs-binary-ast $in
   description = [34mBuilding[39m [2m${out}[22m
 build  src/App.reast : build_ast_from_re $src_root_dir/src/App.re
 rule build_deps
-  command = $bsdep -hash 1fe77b4698b294caa8ac77b09a86a151 $g_ns -g $bsb_dir_group $in
+  command = $bsdep -hash 7bd69efd16463be7466b153d049f08c3 $g_ns -g $bsb_dir_group $in
   restat = 1
   description = [34mBuilding[39m [2m${out}[22m
 build  src/App.d : build_deps src/App.reast
@@ -38,9 +38,21 @@ build  src/css/MediaQuery.reast : build_ast_from_re $src_root_dir/src/css/MediaQ
 build  src/css/MediaQuery.d : build_deps src/css/MediaQuery.reast
 build  src/css/MediaQuery-ReasonReactExamples.cmj |  src/css/MediaQuery-ReasonReactExamples.cmi $src_root_dir/src/css/MediaQuery.bs.js : ml_cmj_cmi src/css/MediaQuery.reast ||  src/css/MediaQuery.d
   g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/css
+build  src/components/Logo/components/Logo/Logo.reast : build_ast_from_re $src_root_dir/src/components/Logo/components/Logo/Logo.re
+build  src/components/Logo/components/Logo/Logo.d : build_deps src/components/Logo/components/Logo/Logo.reast
+build  src/components/Logo/components/Logo/Logo-ReasonReactExamples.cmj |  src/components/Logo/components/Logo/Logo-ReasonReactExamples.cmi $src_root_dir/src/components/Logo/components/Logo/Logo.bs.js : ml_cmj_cmi src/components/Logo/components/Logo/Logo.reast ||  src/components/Logo/components/Logo/Logo.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/components/Logo/components/Logo
+build  src/components/Logo/components/Logo/Logo_Styles.reast : build_ast_from_re $src_root_dir/src/components/Logo/components/Logo/Logo_Styles.re
+build  src/components/Logo/components/Logo/Logo_Styles.d : build_deps src/components/Logo/components/Logo/Logo_Styles.reast
+build  src/components/Logo/components/Logo/Logo_Styles-ReasonReactExamples.cmj |  src/components/Logo/components/Logo/Logo_Styles-ReasonReactExamples.cmi $src_root_dir/src/components/Logo/components/Logo/Logo_Styles.bs.js : ml_cmj_cmi src/components/Logo/components/Logo/Logo_Styles.reast ||  src/components/Logo/components/Logo/Logo_Styles.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/components/Logo/components/Logo
 build  src/components/Header/components/Header.reast : build_ast_from_re $src_root_dir/src/components/Header/components/Header.re
 build  src/components/Header/components/Header.d : build_deps src/components/Header/components/Header.reast
 build  src/components/Header/components/Header-ReasonReactExamples.cmj |  src/components/Header/components/Header-ReasonReactExamples.cmi $src_root_dir/src/components/Header/components/Header.bs.js : ml_cmj_cmi src/components/Header/components/Header.reast ||  src/components/Header/components/Header.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/components/Header/components
+build  src/components/Header/components/Header_Styles.reast : build_ast_from_re $src_root_dir/src/components/Header/components/Header_Styles.re
+build  src/components/Header/components/Header_Styles.d : build_deps src/components/Header/components/Header_Styles.reast
+build  src/components/Header/components/Header_Styles-ReasonReactExamples.cmj |  src/components/Header/components/Header_Styles-ReasonReactExamples.cmi $src_root_dir/src/components/Header/components/Header_Styles.bs.js : ml_cmj_cmi src/components/Header/components/Header_Styles.reast ||  src/components/Header/components/Header_Styles.d
   g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/components/Header/components
 build  src/components/Layout/components/Layout/Layout.reast : build_ast_from_re $src_root_dir/src/components/Layout/components/Layout/Layout.re
 build  src/components/Layout/components/Layout/Layout.d : build_deps src/components/Layout/components/Layout/Layout.reast

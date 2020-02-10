@@ -1,14 +1,17 @@
-ç{F˜²”Ê¨¬w°š†¡Q
+{ÖžýF;çFk=ŸÃ
 1
-9
+12
 App
 Home
+Logo
 Index
 Theme
 Utils
 Header
 Layout
 MediaQuery
+Logo_Styles
+Header_Styles
 Layout_Styles
-src	src/pages/Home	src/css	src/lib	src/components/Header/components	src/components/Layout/components/Layout	
-1	
+src	src/pages/Home	src/components/Logo/components/Logo	src/css	src/lib	src/components/Header/components	src/components/Layout/components/Layout	
+1	
