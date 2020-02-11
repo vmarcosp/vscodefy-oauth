@@ -53630,10 +53630,14 @@ exports.topIcon = topIcon;
 exports.bottomIcon = bottomIcon;
 exports.content = content;
 /* container Not a pure module */
-},{"bs-css/src/Css.js":"node_modules/bs-css/src/Css.js","../../../../css/Theme.bs.js":"src/css/Theme.bs.js","../../../../css/MediaQuery.bs.js":"src/css/MediaQuery.bs.js"}],"src/components/Layout/components/Layout/top.svg":[function(require,module,exports) {
-module.exports = "/top.0e1507c7.svg";
-},{}],"src/components/Layout/components/Layout/bottom.svg":[function(require,module,exports) {
-module.exports = "/bottom.3520d36d.svg";
+},{"bs-css/src/Css.js":"node_modules/bs-css/src/Css.js","../../../../css/Theme.bs.js":"src/css/Theme.bs.js","../../../../css/MediaQuery.bs.js":"src/css/MediaQuery.bs.js"}],"src/components/Layout/components/Layout/assets/top-green.svg":[function(require,module,exports) {
+module.exports = "/top-green.771975dd.svg";
+},{}],"src/components/Layout/components/Layout/assets/bottom-green.svg":[function(require,module,exports) {
+module.exports = "/bottom-green.5455571a.svg";
+},{}],"src/components/Layout/components/Layout/assets/top-blue.svg":[function(require,module,exports) {
+module.exports = "/top-blue.425c3fb5.svg";
+},{}],"src/components/Layout/components/Layout/assets/bottom-blue.svg":[function(require,module,exports) {
+module.exports = "/bottom-blue.99cadd0a.svg";
 },{}],"src/components/Layout/components/Layout/Layout.bs.js":[function(require,module,exports) {
 'use strict';
 
@@ -53643,9 +53647,13 @@ var ReactReveal = require("react-reveal");
 
 var Layout_Styles$VscodefyOauth = require("./Layout_Styles.bs.js");
 
-var topIconUrl = require("./top.svg");
+var topGreenUrl = require("./assets/top-green.svg");
 
-var bottomIconUrl = require("./bottom.svg");
+var bottomGreenUrl = require("./assets/bottom-green.svg");
+
+var topBlueUrl = require("./assets/top-blue.svg");
+
+var bottomBlueUrl = require("./assets/bottom-blue.svg");
 
 function Layout(Props) {
   var children = Props.children;
@@ -53655,27 +53663,47 @@ function Layout(Props) {
     children: React.createElement("img", {
       className: Layout_Styles$VscodefyOauth.topIcon,
       alt: "Background",
-      src: topIconUrl
+      src: topBlueUrl
     }),
-    right: true
+    right: true,
+    delay: 200
+  }), React.createElement(ReactReveal.Fade, {
+    children: React.createElement("img", {
+      className: Layout_Styles$VscodefyOauth.topIcon,
+      alt: "Background",
+      src: topGreenUrl
+    }),
+    right: true,
+    delay: 600
   }), React.createElement(ReactReveal.Fade, {
     children: React.createElement("img", {
       className: Layout_Styles$VscodefyOauth.bottomIcon,
       alt: "Background",
-      src: bottomIconUrl
+      src: bottomBlueUrl
     }),
-    left: true
+    left: true,
+    delay: 200
+  }), React.createElement(ReactReveal.Fade, {
+    children: React.createElement("img", {
+      className: Layout_Styles$VscodefyOauth.bottomIcon,
+      alt: "Background",
+      src: bottomGreenUrl
+    }),
+    left: true,
+    delay: 600
   }), React.createElement("div", {
     className: Layout_Styles$VscodefyOauth.content
   }, children));
 }
 
 var make = Layout;
-exports.topIconUrl = topIconUrl;
-exports.bottomIconUrl = bottomIconUrl;
+exports.topGreenUrl = topGreenUrl;
+exports.bottomGreenUrl = bottomGreenUrl;
+exports.topBlueUrl = topBlueUrl;
+exports.bottomBlueUrl = bottomBlueUrl;
 exports.make = make;
-/* topIconUrl Not a pure module */
-},{"react":"node_modules/react/index.js","react-reveal":"node_modules/react-reveal/index.js","./Layout_Styles.bs.js":"src/components/Layout/components/Layout/Layout_Styles.bs.js","./top.svg":"src/components/Layout/components/Layout/top.svg","./bottom.svg":"src/components/Layout/components/Layout/bottom.svg"}],"src/lib/Render.bs.js":[function(require,module,exports) {
+/* topGreenUrl Not a pure module */
+},{"react":"node_modules/react/index.js","react-reveal":"node_modules/react-reveal/index.js","./Layout_Styles.bs.js":"src/components/Layout/components/Layout/Layout_Styles.bs.js","./assets/top-green.svg":"src/components/Layout/components/Layout/assets/top-green.svg","./assets/bottom-green.svg":"src/components/Layout/components/Layout/assets/bottom-green.svg","./assets/top-blue.svg":"src/components/Layout/components/Layout/assets/top-blue.svg","./assets/bottom-blue.svg":"src/components/Layout/components/Layout/assets/bottom-blue.svg"}],"src/lib/Render.bs.js":[function(require,module,exports) {
 'use strict';
 
 function $$int(value) {
@@ -55944,7 +55972,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36039" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39033" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
