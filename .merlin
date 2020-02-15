@@ -28,6 +28,8 @@ S src/components/Header/components
 B lib/bs/src/components/Header/components
 S src/components/ProjectInformations/components/ProjectInformations
 B lib/bs/src/components/ProjectInformations/components/ProjectInformations
+S src/components/ProjectInformations/hooks/GIthubDataHook
+B lib/bs/src/components/ProjectInformations/hooks/GIthubDataHook
 S src/components/ProjectInformations/hooks/ProjectInformationsHook
 B lib/bs/src/components/ProjectInformations/hooks/ProjectInformationsHook
 S src/components/Banner/components/Banner
@@ -42,4 +44,6 @@ S src/lib
 B lib/bs/src/lib
 S src/pages/Home
 B lib/bs/src/pages/Home
+S src/hooks
+B lib/bs/src/hooks
 ####BSB GENERATED: NO EDIT}

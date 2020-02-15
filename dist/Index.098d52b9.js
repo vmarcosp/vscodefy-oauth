@@ -55694,16 +55694,82 @@ exports.PipeFirst = PipeFirst;
 exports.onUnhandledException = onUnhandledException;
 /*  Not a pure module */
 
-},{"bs-platform/lib/js/block.js":"node_modules/bs-platform/lib/js/block.js","bs-platform/lib/js/curry.js":"node_modules/bs-platform/lib/js/curry.js","bs-platform/lib/js/caml_option.js":"node_modules/bs-platform/lib/js/caml_option.js","bs-platform/lib/js/caml_builtin_exceptions.js":"node_modules/bs-platform/lib/js/caml_builtin_exceptions.js"}],"src/components/ProjectInformations/hooks/ProjectInformationsHook/ProjectInformationsHook.bs.js":[function(require,module,exports) {
+},{"bs-platform/lib/js/block.js":"node_modules/bs-platform/lib/js/block.js","bs-platform/lib/js/curry.js":"node_modules/bs-platform/lib/js/curry.js","bs-platform/lib/js/caml_option.js":"node_modules/bs-platform/lib/js/caml_option.js","bs-platform/lib/js/caml_builtin_exceptions.js":"node_modules/bs-platform/lib/js/caml_builtin_exceptions.js"}],"src/lib/Hooks.bs.js":[function(require,module,exports) {
+'use strict';
+
+var Curry = require("bs-platform/lib/js/curry.js");
+
+var React = require("react");
+
+function always(a, param) {
+  return a;
+}
+
+function useEffectOnce(prim) {
+  React.useEffect(function () {
+    return Curry._1(prim,
+    /* () */
+    0);
+  }, []);
+  return (
+    /* () */
+    0
+  );
+}
+
+function useState(value) {
+  return React.useState(function () {
+    return value;
+  });
+}
+
+exports.always = always;
+exports.useEffectOnce = useEffectOnce;
+exports.useState = useState;
+/* react Not a pure module */
+},{"bs-platform/lib/js/curry.js":"node_modules/bs-platform/lib/js/curry.js","react":"node_modules/react/index.js"}],"src/hooks/AxiosHook.bs.js":[function(require,module,exports) {
 'use strict';
 
 var Curry = require("bs-platform/lib/js/curry.js");
 
 var Axios = require("axios");
 
-var React = require("react");
-
 var $$Promise = require("reason-promise/src/js/promise.js");
+
+var Hooks$VscodefyOauth = require("../lib/Hooks.bs.js");
+
+function useGet(url) {
+  var match = Hooks$VscodefyOauth.useState(
+  /* Loading */
+  1);
+  var setResult = match[1];
+
+  var whenSucess = function whenSucess(response) {
+    var partial_arg =
+    /* Data */
+    [response.data];
+    return Curry._1(setResult, function (param) {
+      return Hooks$VscodefyOauth.always(partial_arg, param);
+    });
+  };
+
+  var request = function request(param) {
+    $$Promise.Js.get($$Promise.Js.fromBsPromise(Axios.get(url)), whenSucess);
+    return;
+  };
+
+  Hooks$VscodefyOauth.useEffectOnce(request);
+  return match[0];
+}
+
+var RePromise = 0;
+exports.RePromise = RePromise;
+exports.useGet = useGet;
+/* axios Not a pure module */
+},{"bs-platform/lib/js/curry.js":"node_modules/bs-platform/lib/js/curry.js","axios":"node_modules/axios/index.js","reason-promise/src/js/promise.js":"node_modules/reason-promise/src/js/promise.js","../lib/Hooks.bs.js":"src/lib/Hooks.bs.js"}],"src/components/ProjectInformations/hooks/GIthubDataHook/GIthubDataHook.bs.js":[function(require,module,exports) {
+'use strict';
+
+var AxiosHook$VscodefyOauth = require("../../../../hooks/AxiosHook.bs.js");
 
 var githubApi = "https://api.github.com/repos/iagolaguna/vscodefy";
 
@@ -55718,53 +55784,49 @@ function createGithubData(data) {
   );
 }
 
-function always(value, param) {
-  return value;
-}
+function useGithubData(param) {
+  var result = AxiosHook$VscodefyOauth.useGet(githubApi);
 
-function useProjectInformations(param) {
-  var partial_arg =
-  /* record */
-  [
-  /* stars */
-  0,
-  /* forks */
-  0];
-  var match = React.useState(function () {
-    return partial_arg;
-  });
-  var setGitHubData = match[1];
-
-  var saveData = function saveData(response) {
-    var partial_arg = createGithubData(response.data);
-    return Curry._1(setGitHubData, function (param) {
-      return partial_arg;
-    });
-  };
-
-  var requestGithubData = function requestGithubData(param) {
-    return $$Promise.Js.get($$Promise.Js.fromBsPromise(Axios.get(githubApi)), saveData);
-  };
-
-  React.useEffect(function () {
-    requestGithubData(
-    /* () */
-    0);
-    return;
-  },
-  /* array */
-  [requestGithubData]);
-  return match[0];
+  if (typeof result === "number") {
+    if (result !== 0) {
+      return (
+        /* Loading */
+        1
+      );
+    } else {
+      return (
+        /* Error */
+        0
+      );
+    }
+  } else {
+    return (
+      /* Data */
+      [createGithubData(result[0])]
+    );
+  }
 }
 
 var RePromise = 0;
 exports.RePromise = RePromise;
 exports.githubApi = githubApi;
 exports.createGithubData = createGithubData;
-exports.always = always;
+exports.useGithubData = useGithubData;
+/* AxiosHook-VscodefyOauth Not a pure module */
+},{"../../../../hooks/AxiosHook.bs.js":"src/hooks/AxiosHook.bs.js"}],"src/components/ProjectInformations/hooks/ProjectInformationsHook/ProjectInformationsHook.bs.js":[function(require,module,exports) {
+'use strict';
+
+var GIthubDataHook$VscodefyOauth = require("../GIthubDataHook/GIthubDataHook.bs.js");
+
+function useProjectInformations(param) {
+  return GIthubDataHook$VscodefyOauth.useGithubData(
+  /* () */
+  0);
+}
+
 exports.useProjectInformations = useProjectInformations;
-/* axios Not a pure module */
-},{"bs-platform/lib/js/curry.js":"node_modules/bs-platform/lib/js/curry.js","axios":"node_modules/axios/index.js","react":"node_modules/react/index.js","reason-promise/src/js/promise.js":"node_modules/reason-promise/src/js/promise.js"}],"src/components/ProjectInformations/components/ProjectInformations/ProjectInformations_Styles.bs.js":[function(require,module,exports) {
+/* GIthubDataHook-VscodefyOauth Not a pure module */
+},{"../GIthubDataHook/GIthubDataHook.bs.js":"src/components/ProjectInformations/hooks/GIthubDataHook/GIthubDataHook.bs.js"}],"src/components/ProjectInformations/components/ProjectInformations/ProjectInformations_Styles.bs.js":[function(require,module,exports) {
 'use strict';
 
 var Css = require("bs-css/src/Css.js");
@@ -55830,24 +55892,30 @@ var ProjectInformationsHook$VscodefyOauth = require("../../hooks/ProjectInformat
 var ProjectInformations_Styles$VscodefyOauth = require("./ProjectInformations_Styles.bs.js");
 
 function ProjectInformations(Props) {
-  var match = ProjectInformationsHook$VscodefyOauth.useProjectInformations(
+  var response = ProjectInformationsHook$VscodefyOauth.useProjectInformations(
   /* () */
   0);
-  return React.createElement(ReactReveal.Fade, {
-    children: React.createElement("ul", {
-      className: ProjectInformations_Styles$VscodefyOauth.list
-    }, React.createElement("li", undefined, "5k Downloads"), React.createElement("span", {
-      className: ProjectInformations_Styles$VscodefyOauth.divider
-    }), React.createElement("li", undefined, Render$VscodefyOauth.$$int(match[
-    /* stars */
-    0]), " Stars"), React.createElement("span", {
-      className: ProjectInformations_Styles$VscodefyOauth.divider
-    }), React.createElement("li", undefined, Render$VscodefyOauth.$$int(match[
-    /* forks */
-    1]), " Forks")),
-    bottom: true,
-    delay: 800
-  });
+
+  if (typeof response === "number") {
+    return React.createElement("div", undefined);
+  } else {
+    var match = response[0];
+    return React.createElement(ReactReveal.Fade, {
+      children: React.createElement("ul", {
+        className: ProjectInformations_Styles$VscodefyOauth.list
+      }, React.createElement("li", undefined, "5k Downloads"), React.createElement("span", {
+        className: ProjectInformations_Styles$VscodefyOauth.divider
+      }), React.createElement("li", undefined, Render$VscodefyOauth.$$int(match[
+      /* stars */
+      0]), " Stars"), React.createElement("span", {
+        className: ProjectInformations_Styles$VscodefyOauth.divider
+      }), React.createElement("li", undefined, Render$VscodefyOauth.$$int(match[
+      /* forks */
+      1]), " Forks")),
+      bottom: true,
+      delay: 800
+    });
+  }
 }
 
 var make = ProjectInformations;
@@ -55972,7 +56040,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39033" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36219" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

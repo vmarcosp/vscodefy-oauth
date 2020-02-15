@@ -3,9 +3,13 @@ open ReactReveal;
 
 [@react.component]
 let make = () => {
-  let {stars, forks} = useProjectInformations();
+  let response = useProjectInformations();
 
-  ProjectInformations_Styles.(
+  switch response {
+  | Loading 
+  | Error => <div />
+  | Data({ stars, forks }) => 
+    ProjectInformations_Styles.(
     <Fade delay=800 bottom=true>
       <ul className=list>
         <li> "5k Downloads"->React.string </li>
@@ -16,4 +20,5 @@ let make = () => {
       </ul>
     </Fade>
   );
+  };
 };
