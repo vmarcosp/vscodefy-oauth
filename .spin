@@ -1,0 +1,7 @@
+(Source bs-react)
+(Cfg_str project_name vscodefy-web)
+(Cfg_str project_slug vscodefy-web)
+(Cfg_str project_description"VSCodefy OAuth page")
+(Cfg_str css_framework None)
+(Cfg_str ci_cd None)
+(Cfg_str author_name vscodefy)
