@@ -19,7 +19,8 @@ type response =
   | Error;
 
 let githuApi = "https://api.github.com/repos/iagolaguna/vscodefy";
-let downloadsApi = "http://localhost:3000/downloads";
+// let downloadsApi = "http://localhost:3000/downloads";
+let downloadsApi = "http://www.mocky.io/v2/5ec9bb063000000d00a6ce5d";
 
 let getDownloadsAmount =
   fun
@@ -45,6 +46,7 @@ let useProjectInformations = () => {
   let downloadsResult: AxiosHooks.result(downloads) =
     AxiosHooks.useGet(~url=downloadsApi);
 
+  Js.log((githubResult, downloadsResult));
   switch (githubResult, downloadsResult) {
   | (Data(github), Data(downloads)) => mergeData(github, downloads)
   //
@@ -52,7 +54,6 @@ let useProjectInformations = () => {
   | (Data(_), Loading)
   | (Loading, Loading) => Loading
   //
-  | (_, Error)
-  | (Error, _) => Error
+  | (Error | _, Error | _) => Error
   };
 };

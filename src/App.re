@@ -11,10 +11,13 @@ Css.(
 [@react.component]
 let make = () => {
   let url = ReasonReactRouter.useUrl();
-  Js.log(url);
-  switch (url.path) {
-  | ["home"] => <Home />
-  | ["login"] => <div />
-  | _ => <Home />
-  };
+
+  <Layout>
+    <Header />
+    {switch (url.path) {
+     | ["home"] => <Home />
+     | ["oauth"] => <OAuth />
+     | _ => <Home />
+     }}
+  </Layout>;
 };
