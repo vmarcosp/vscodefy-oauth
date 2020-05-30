@@ -1,52 +1,67 @@
 module RePromise = Promise.Js;
+module Promise = Js.Promise;
+module Result = Belt.Result;
 
-type responseError = {
-  status: int,
-  log: string,
+type axiosError('a, 'header) = {
+  .
+  "status": string,
+  "response": Axios_types.response('a, 'header),
 };
 
-type result('a) =
-  | Data(option('a))
-  | Error
+external fromPromiseError: Js.Promise.error => axiosError('a, 'header) =
+  "%identity";
+
+type axiosHooksError('a) = {
+  data: 'a,
+  status: string,
+};
+
+type result('data, 'dataError) =
+  | Data('data)
+  | Error(axiosHooksError('dataError))
   | Loading;
 
-external fromPromiseError: Js.Promise.error => Js.t('a) = "%identity";
+let toOk = response =>
+  response //
+  ->Result.Ok
+  ->Promise.resolve;
 
-module Fetcher = {
-  module JsPromise = Js.Promise;
-  module Result = Belt.Result;
+let toError = error =>
+  error //
+  ->fromPromiseError
+  ->Result.Error
+  ->Promise.resolve;
 
-  let toPromiseError = error => {
-    let realError = fromPromiseError(error);
-    Js.Promise.resolve(realError);
-  };
-
-  let toPromiseSuccess = response => JsPromise.resolve(response);
-
-  let toResult = promise =>
-    promise  //
-    |> JsPromise.then_(toPromiseSuccess)
-    |> JsPromise.catch(toPromiseError);
-
-  let get = url =>
-    url  //
-    |> Axios.get
-    |> toResult
-    |> RePromise.fromBsPromise
-    |> RePromise.toResult;
+let get = url => {
+  Axios.get(url)
+  |> Promise.then_(toOk)
+  |> Promise.catch(toError)
+  |> RePromise.fromBsPromise;
 };
 
 let useGet = (~url) => {
   let (result, setResult) = Hooks.useState(Loading);
 
   let whenSuccess = response =>
-    Data(Some(response##data))  //
+    Data(response##data)  //
     |> Hooks.always
     |> setResult;
 
+  let whenError = error =>
+    Error({data: error##response##data, status: error##status})
+    ->Hooks.always
+    ->setResult;
+
+  let processResponse = result => {
+    switch (result) {
+    | Ok(response) => whenSuccess(response)
+    | Error(error) => whenError(error)
+    };
+    ();
+  };
+
   let request = () => {
-    Fetcher.get(url) //
-    ->Promise.getOk(Js.log);
+    get(url)->RePromise.get(processResponse);
     None;
   };
 
