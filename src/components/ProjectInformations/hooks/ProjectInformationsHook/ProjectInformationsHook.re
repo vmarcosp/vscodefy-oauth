@@ -1,43 +1,32 @@
-open Optional;
+[@decco]
+type downloads = {amount: int};
 
-type downloads = {amount: option(int)};
-
+[@decco]
 type githubData = {
-  stargazers_count: option(int),
-  forks: option(int),
-};
-
-type projectData = {
+  [@decco.key "stargazers_count"]
   stars: int,
   forks: int,
-  downloadsAmount: int,
 };
 
 type response =
-  | ProjectData(projectData)
+  | ProjectData(githubData, downloads)
   | Loading
   | Error;
 
-let githuApi = "https://api.github.com/repos/iagolaguna/vscodefy";
+let githubApi = "https://api.github.com/repos/iagolaguna/vscodefy";
 let downloadsApi = "http://localhost:3000/downloads";
 
-let mergeData = ({ stargazers_count, forks }, { amount }) =>
-  ProjectData({
-    stars: stargazers_count >? 0,
-    forks: forks >? 0,
-    downloadsAmount: amount >? 0
-  });
-
 let useProjectInformations = () => {
-  let githubResult: AxiosHooks.result(githubData, _) =
-    AxiosHooks.useGet(~url=githuApi);
-
-  let downloadsResult: AxiosHooks.result(downloads, _) =
-    AxiosHooks.useGet(~url=downloadsApi);
+  let (githubResult, downloadsResult) =
+    AxiosHooks.(
+      useGet(githubApi, githubData_decode),
+      useGet(downloadsApi, downloads_decode),
+    );
 
   switch (githubResult, downloadsResult) {
-  | (Data(github), Data(downloads)) => mergeData(github, downloads)
+  | (Data(github), Data(downloads)) => ProjectData(github, downloads)
   | (Loading | Data(_), Loading | Data(_)) => Loading
-  | (Error(_) | _, Error(_) | _) => Error
+  | (_, Error(_) | DecodeError)
+  | (Error(_) | DecodeError, _) => Error
   };
 };
