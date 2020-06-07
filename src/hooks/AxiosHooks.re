@@ -19,6 +19,7 @@ type axiosHooksError('a) = {
 type result('data, 'dataError) =
   | Data('data)
   | Error(axiosHooksError('dataError))
+  | DecodeError
   | Loading;
 
 let toOk = response =>
@@ -39,13 +40,17 @@ let get = url => {
   |> RePromise.fromBsPromise;
 };
 
-let useGet = (~url) => {
+let useGet = (url, decoder) => {
   let (result, setResult) = Hooks.useState(Loading);
 
-  let whenSuccess = response =>
-    Data(response##data)  //
-    |> Hooks.always
-    |> setResult;
+  let whenSuccess = response => {
+    let decoded = decoder(response##data);
+
+    switch (decoded) {
+    | Ok(content) => Data(content) |> Hooks.always |> setResult
+    | Error(_) => DecodeError |> Hooks.always |> setResult
+    };
+  };
 
   let whenError = error =>
     Error({data: error##response##data, status: error##status})

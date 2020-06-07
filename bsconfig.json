@@ -22,13 +22,14 @@
     "reason-react",
     "reason-promise",
     "bs-axios",
-    "bs-webapi"
+    "bs-webapi",
+    "decco"
   ],
   "bs-dev-dependencies": [
     "@glennsl/bs-jest",
     "bs-react-testing-library"
   ],
-  "ppx-flags": [],
+  "ppx-flags": ["decco/ppx"],
   "refmt": 3,
   "warnings": {
     "error": "+5"
