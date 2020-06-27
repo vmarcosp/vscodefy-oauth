@@ -14,10 +14,11 @@ Css.(
 );
 
 [@react.component]
-let make = () => {
+let make = (~text) => {
   let url = ReasonReactRouter.useUrl();
 
   <Layout>
+    {React.string(text)}
     <Header />
     {switch (url.path) {
      | ["home"] => <Home />

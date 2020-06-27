@@ -18,13 +18,14 @@
     "ReasonReact"
   ],
   "dependencies": {
+    "@vmarcosp/bs-react-reveal": "^0.0.4",
     "autoprefixer": "^9.7.3",
     "decco": "^1.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-reveal": "^1.2.2",
     "reason-promise": "^1.0.2",
-    "reason-react": ">=0.7.0"
+    "reason-react": "^0.9.1"
   },
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.9",

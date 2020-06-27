@@ -23,7 +23,8 @@
     "reason-promise",
     "bs-axios",
     "bs-webapi",
-    "decco"
+    "decco",
+    "@vmarcosp/bs-react-reveal"
   ],
   "bs-dev-dependencies": [
     "@glennsl/bs-jest",
